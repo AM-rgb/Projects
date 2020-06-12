@@ -1,1 +1,1 @@
-The projects I have worked on so far in ML and Deep learning.
+The projects I have worked on so far in Machine learning and Deep learning.
