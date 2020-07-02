@@ -13350,7 +13350,7 @@ There are 8351 total dog images.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
@@ -13394,31 +13394,8 @@ There are 8351 total dog images.
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 100/100 [00:02&lt;00:00, 35.61it/s]
-100%|██████████| 100/100 [00:29&lt;00:00,  3.40it/s]</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Percentage of correctly identified human faces:  98
-Percentage of correctly identified dog-as-humans faces:  17
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
-</pre>
+<pre>100%|██████████| 100/100 [00:02&lt;00:00, 35.04it/s]
+ 36%|███▌      | 36/100 [00:09&lt;00:22,  2.82it/s]</pre>
 </div>
 </div>
 
@@ -13436,7 +13413,7 @@ Percentage of correctly identified dog-as-humans faces:  17
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### (Optional) </span>
@@ -13495,7 +13472,7 @@ Percentage of correctly identified dog-as-humans faces:  17
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Downloading: &#34;https://download.pytorch.org/models/vgg16-397923af.pth&#34; to /root/.torch/models/vgg16-397923af.pth
-100%|██████████| 553433881/553433881 [00:05&lt;00:00, 102339693.03it/s]
+100%|██████████| 553433881/553433881 [00:05&lt;00:00, 102108137.88it/s]
 </pre>
 </div>
 </div>
@@ -13684,8 +13661,8 @@ Percentage of correctly identified dog-as-humans faces:  17
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 100/100 [00:06&lt;00:00, 16.05it/s]
-100%|██████████| 100/100 [00:08&lt;00:00, 11.70it/s]</pre>
+<pre>100%|██████████| 100/100 [00:06&lt;00:00, 15.88it/s]
+100%|██████████| 100/100 [00:08&lt;00:00, 11.98it/s]</pre>
 </div>
 </div>
 
@@ -13695,8 +13672,8 @@ Percentage of correctly identified dog-as-humans faces:  17
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Percentage of human faces identified as dogs:  2
-Percentage of dog faces corrrectly identified:  97
+<pre>Percentage of human faces identified as dogs:  4
+Percentage of dog faces corrrectly identified:  99
 </pre>
 </div>
 </div>
@@ -13819,7 +13796,7 @@ Percentage of dog faces corrrectly identified:  97
 <span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="s1">&#39;/data/dog_images/test&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform_valid_test</span><span class="p">)</span>
 
 <span class="c1"># define dataloader parameters</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span>
 
 <span class="c1"># prepare data loaders</span>
@@ -13883,49 +13860,46 @@ as the vgg16 model accepts only 224x224 images as input, so we resize the images
         <span class="nb">super</span><span class="p">(</span><span class="n">Net</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1">## Define layers of a CNN</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>   
-        <span class="c1"># input: 3x224x224, output: 16x224x224</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>               
-        <span class="c1"># input: 16x224x224, output: 16x112x112</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
-        <span class="c1"># input: 16x112x112, output: 32x112x112</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>               
-        <span class="c1"># input: 32x112x112, output: 32x56x56</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
-        <span class="c1"># input: 32x56x56, output: 64x56x56</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>               
-        <span class="c1"># input: 64x56x56, output: 64x28x28</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
-        <span class="c1"># input: 64x28x28, output: 128x28x28</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>               
-        <span class="c1"># input: 128x28x28, output: 128x14x14</span>
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv5</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># input: 128x14x14, output: 256x14x14</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool5</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>               
-        <span class="c1"># input: 256x14x14, output: 256x7x7</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv6</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn5</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bn6</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>        
-        <span class="c1"># linear layer (256 * 7 * 7 -&gt; 500)</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">133</span><span class="p">)</span>                
-        <span class="c1"># linear layer (500 -&gt; 133)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>    
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">gap</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">133</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+
+
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool3</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool4</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv4</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool5</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv5</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">256</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    
+        <span class="c1">## Define forward behavior</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn4</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv4</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn5</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv5</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn6</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv6</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
         
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gap</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="n">x</span>
 
 <span class="c1">#-#-# You so NOT have to modify the code below this line. #-#-#</span>
@@ -13955,7 +13929,7 @@ as the vgg16 model accepts only 224x224 images as input, so we resize the images
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> 
--Constructed a light weight and less deep VGG-like architecture and called it Net with conv and maxpool layers and finally with a couple of fully connected (FC) layers with small dropouts in the FC layers for regularization.<br>
+-Constructed a light weight and less deep VGG-like architecture and called it Net with conv, maxpool layers, an average global averaging pooling layer to prevent overfitting and finally with a couple of fully connected (FC) layers with small dropouts in the FC layers for regularization.<br>
 -Set the loss function to cross entropy loss and the optimization function to Adam optimizer.<br>
 -Trained the network for 40 epochs at learning rate of 0.001.<br>
 -Saved the model with lowest validation loss.<br>
@@ -14192,35 +14166,100 @@ as the vgg16 model accepts only 224x224 images as input, so we resize the images
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Validation loss decreased (inf --&gt; 4.868583).  Saving model ...
-Validation loss decreased (4.868583 --&gt; 4.584817).  Saving model ...
-Validation loss decreased (4.584817 --&gt; 4.529349).  Saving model ...
-Validation loss decreased (4.529349 --&gt; 4.326101).  Saving model ...
-Epoch: 5 	Train Loss: 4.284113 	Valid Loss: 4.175841 	Train Acc: 5.13 	Valid Acc: 7.43
-Validation loss decreased (4.326101 --&gt; 4.175841).  Saving model ...
-Validation loss decreased (4.175841 --&gt; 4.035503).  Saving model ...
-Validation loss decreased (4.035503 --&gt; 3.942317).  Saving model ...
-Validation loss decreased (3.942317 --&gt; 3.846320).  Saving model ...
-Validation loss decreased (3.846320 --&gt; 3.809042).  Saving model ...
-Epoch: 10 	Train Loss: 3.640329 	Valid Loss: 3.869616 	Train Acc: 12.98 	Valid Acc: 10.18
-Validation loss decreased (3.809042 --&gt; 3.689119).  Saving model ...
-Validation loss decreased (3.689119 --&gt; 3.645881).  Saving model ...
-Validation loss decreased (3.645881 --&gt; 3.614906).  Saving model ...
-Epoch: 15 	Train Loss: 3.186764 	Valid Loss: 3.583255 	Train Acc: 20.15 	Valid Acc: 13.65
-Validation loss decreased (3.614906 --&gt; 3.583255).  Saving model ...
-Validation loss decreased (3.583255 --&gt; 3.567773).  Saving model ...
-Validation loss decreased (3.567773 --&gt; 3.446835).  Saving model ...
-Epoch: 20 	Train Loss: 2.783943 	Valid Loss: 3.495578 	Train Acc: 29.63 	Valid Acc: 16.29
-Validation loss decreased (3.446835 --&gt; 3.395415).  Saving model ...
-Epoch: 25 	Train Loss: 2.464081 	Valid Loss: 3.475270 	Train Acc: 36.47 	Valid Acc: 20.96
-Validation loss decreased (3.395415 --&gt; 3.390875).  Saving model ...
-Epoch: 30 	Train Loss: 2.192785 	Valid Loss: 3.441059 	Train Acc: 42.53 	Valid Acc: 22.51
-Epoch: 35 	Train Loss: 2.004794 	Valid Loss: 3.429237 	Train Acc: 47.81 	Valid Acc: 23.23
-Epoch: 40 	Train Loss: 1.848232 	Valid Loss: 3.397750 	Train Acc: 51.69 	Valid Acc: 24.31
-Test Loss: 3.424639
+<pre>Validation loss decreased (inf --&gt; 4.330496).  Saving model ...
+Validation loss decreased (4.330496 --&gt; 4.065743).  Saving model ...
+Validation loss decreased (4.065743 --&gt; 3.794401).  Saving model ...
+Validation loss decreased (3.794401 --&gt; 3.753381).  Saving model ...
+Epoch: 5 	Train Loss: 3.586744 	Valid Loss: 3.403713 	Train Acc: 13.38 	Valid Acc: 15.09
+Validation loss decreased (3.753381 --&gt; 3.403713).  Saving model ...
+Validation loss decreased (3.403713 --&gt; 3.208627).  Saving model ...
+Validation loss decreased (3.208627 --&gt; 3.078422).  Saving model ...
+Validation loss decreased (3.078422 --&gt; 2.925848).  Saving model ...
+Validation loss decreased (2.925848 --&gt; 2.913297).  Saving model ...
+Epoch: 10 	Train Loss: 2.620092 	Valid Loss: 2.547187 	Train Acc: 29.79 	Valid Acc: 33.05
+Validation loss decreased (2.913297 --&gt; 2.547187).  Saving model ...
+Validation loss decreased (2.547187 --&gt; 2.542264).  Saving model ...
+Validation loss decreased (2.542264 --&gt; 2.299336).  Saving model ...
+Validation loss decreased (2.299336 --&gt; 2.254490).  Saving model ...
+Validation loss decreased (2.254490 --&gt; 2.183831).  Saving model ...
+Epoch: 15 	Train Loss: 1.959901 	Valid Loss: 2.188533 	Train Acc: 45.54 	Valid Acc: 41.32
+Validation loss decreased (2.183831 --&gt; 2.078209).  Saving model ...
+Validation loss decreased (2.078209 --&gt; 1.934318).  Saving model ...
+Validation loss decreased (1.934318 --&gt; 1.835401).  Saving model ...
+Epoch: 20 	Train Loss: 1.525098 	Valid Loss: 1.898839 	Train Acc: 56.12 	Valid Acc: 48.26
+Epoch: 25 	Train Loss: 1.276782 	Valid Loss: 1.925400 	Train Acc: 62.56 	Valid Acc: 48.86
+Validation loss decreased (1.835401 --&gt; 1.786437).  Saving model ...
+Epoch: 30 	Train Loss: 1.070076 	Valid Loss: 1.762780 	Train Acc: 68.22 	Valid Acc: 54.37
+Validation loss decreased (1.786437 --&gt; 1.762780).  Saving model ...
+Validation loss decreased (1.762780 --&gt; 1.758090).  Saving model ...
+Epoch: 35 	Train Loss: 0.937724 	Valid Loss: 1.777247 	Train Acc: 71.39 	Valid Acc: 54.61
+Validation loss decreased (1.758090 --&gt; 1.686184).  Saving model ...
+Validation loss decreased (1.686184 --&gt; 1.664797).  Saving model ...
+Epoch: 40 	Train Loss: 0.880763 	Valid Loss: 1.672207 	Train Acc: 74.12 	Valid Acc: 58.32
+Test Loss: 1.790680
 
 
-Test Accuracy: 20% (175/836)
+Test Accuracy: 55% (464/836)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="n">model_scratch</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model_scratch.pt&#39;</span><span class="p">))</span>
+
+
+<span class="c1">### TODO: select loss function</span>
+<span class="n">criterion_scratch</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+
+<span class="c1">### TODO: select optimizer</span>
+<span class="n">optimizer_scratch</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model_scratch</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="c1"># train the model</span>
+<span class="n">model_scratch</span><span class="p">,</span> <span class="n">train_loss_coll</span><span class="p">,</span> <span class="n">valid_loss_coll</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">model_scratch</span><span class="p">,</span> <span class="n">optimizer_scratch</span><span class="p">,</span> 
+                                                        <span class="n">criterion_scratch</span><span class="p">,</span> <span class="n">use_cuda</span><span class="p">,</span> <span class="s1">&#39;model_scratch.pt&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># load the model that got the best validation accuracy</span>
+<span class="n">model_scratch</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;model_scratch.pt&#39;</span><span class="p">))</span>
+
+
+<span class="c1"># test the model    </span>
+<span class="n">test</span><span class="p">(</span><span class="n">loaders</span><span class="p">,</span> <span class="n">model_scratch</span><span class="p">,</span> <span class="n">criterion_scratch</span><span class="p">,</span> <span class="n">use_cuda</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Validation loss decreased (inf --&gt; 1.622488).  Saving model ...
+Validation loss decreased (1.622488 --&gt; 1.596722).  Saving model ...
+Validation loss decreased (1.596722 --&gt; 1.573596).  Saving model ...
+Epoch: 5 	Train Loss: 0.616710 	Valid Loss: 1.659508 	Train Acc: 81.59 	Valid Acc: 59.88
+Epoch: 10 	Train Loss: 0.559698 	Valid Loss: 1.566863 	Train Acc: 82.78 	Valid Acc: 60.96
+Validation loss decreased (1.573596 --&gt; 1.566863).  Saving model ...
+Test Loss: 1.696473
+
+
+Test Accuracy: 61% (510/836)
 </pre>
 </div>
 </div>
@@ -14813,11 +14852,10 @@ Test Accuracy: 88% (737/836)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> (Three possible points for improvement)
-it was worse than I expected.<br>
-1-Image Augmentation helped a bit, but not as much as expected<br>
+<p><strong>Answer:</strong> (Three possible points for improvement)</p>
+<p>1-Image Augmentation helped a bit, but not as much as expected<br>
 2-We should get way more training images, as the model overfits a bit because of the few number of images, so we need a larger dataset.<br>
-3-The model I built from scratch performed badly, but it was expected as this is an extremely challenging task, it needed to train for alot more epochs and I needed to lower the overfitting somehow</p>
+3-The model I built from scratch needed to train for alot more to show its potential.</p>
 
 </div>
 </div>
